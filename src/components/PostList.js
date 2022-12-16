@@ -7,12 +7,6 @@ const PostList = () => {
     error,
   } = useFetch("http://192.168.124.70:8000/posts");
 
-  const handleDelete = (id) => {
-    console.log(`delete post id ${id}!`);
-    let all_posts = posts.filter((post) => post.id !== id);
-    //setPosts(all_posts);
-  };
-
   return (
     <div>
       <h3>Posts</h3>
@@ -25,9 +19,6 @@ const PostList = () => {
               <p>{post.id}</p>
               <p>{post.title}</p>
               <p>{post.content}</p>
-              <p>
-                <button onClick={() => handleDelete(post.id)}>delete</button>
-              </p>
             </div>
           );
         })}

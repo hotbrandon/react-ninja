@@ -1,32 +1,13 @@
-import { useState } from "react";
+import { Link } from "react-router-dom";
 
 const NavBar = () => {
-  const [loggedIn, setLoggedIn] = useState(false);
-
-  const handleLogin = () => {
-    setLoggedIn(true);
-  };
-
-  const handleLogout = () => {
-    setLoggedIn(false);
-  };
-
   return (
     <nav className="navbar">
       <h1>The Pythonist Blog</h1>
       <div className="links">
-        <a href="/">Home</a>
-        <a href="/posts">Posts</a>
-        <a href="/create">New Blog</a>
-        {loggedIn ? (
-          <a href="#" onClick={handleLogout}>
-            Logout
-          </a>
-        ) : (
-          <a href="#" onClick={handleLogin}>
-            Login
-          </a>
-        )}
+        <Link to="/">Home</Link>
+        <Link to="/posts">Posts</Link>
+        <Link to="/create">New Blog</Link>
       </div>
     </nav>
   );
