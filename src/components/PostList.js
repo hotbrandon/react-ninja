@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 
 const PostList = () => {
   const [posts, setPosts] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     console.log("fetching posts!");
@@ -21,6 +22,7 @@ const PostList = () => {
       <h3>Posts</h3>
       <table>
         <tbody>
+          {isLoading && "loading posts..."}
           {posts.map((post) => {
             return (
               <tr key={post.id}>
