@@ -1,33 +1,16 @@
-import { useEffect, useState } from "react";
+import useFetch from "./useFetch";
 
 const PostList = () => {
-  const [posts, setPosts] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState(null);
-
-  useEffect(() => {
-    console.log("fetching posts!");
-    fetch("http://192.168.124.70:8000/posts")
-      .then((res) => {
-        if (!res.ok) {
-          throw Error("failed to fetch posts!");
-        }
-        return res.json();
-      })
-      .then((data) => {
-        setPosts(data);
-        setIsLoading(false);
-      })
-      .catch((err) => {
-        console.log(err);
-        setError(err.message);
-      });
-  }, []);
+  const {
+    data: posts,
+    isLoading,
+    error,
+  } = useFetch("http://192.168.124.70:8000/posts");
 
   const handleDelete = (id) => {
     console.log(`delete post id ${id}!`);
     let all_posts = posts.filter((post) => post.id !== id);
-    setPosts(all_posts);
+    //setPosts(all_posts);
   };
 
   return (
