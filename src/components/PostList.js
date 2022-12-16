@@ -3,12 +3,25 @@ import { useEffect, useState } from "react";
 const PostList = () => {
   const [posts, setPosts] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     console.log("fetching posts!");
     fetch("http://192.168.124.70:8000/posts")
-      .then((res) => res.json())
-      .then((data) => setPosts(data));
+      .then((res) => {
+        if (!res.ok) {
+          throw Error("failed to fetch posts!");
+        }
+        return res.json();
+      })
+      .then((data) => {
+        setPosts(data);
+        setIsLoading(false);
+      })
+      .catch((err) => {
+        console.log(err);
+        setError(err.message);
+      });
   }, []);
 
   const handleDelete = (id) => {
@@ -20,23 +33,22 @@ const PostList = () => {
   return (
     <div>
       <h3>Posts</h3>
-      <table>
-        <tbody>
-          {isLoading && "loading posts..."}
-          {posts.map((post) => {
-            return (
-              <tr key={post.id}>
-                <td>{post.id}</td>
-                <td>{post.title}</td>
-                <td>{post.content}</td>
-                <td>
-                  <button onClick={() => handleDelete(post.id)}>delete</button>
-                </td>
-              </tr>
-            );
-          })}
-        </tbody>
-      </table>
+      <div>
+        {error && <div>{error}</div>}
+        {isLoading && "loading posts..."}
+        {posts.map((post) => {
+          return (
+            <div key={post.id}>
+              <p>{post.id}</p>
+              <p>{post.title}</p>
+              <p>{post.content}</p>
+              <p>
+                <button onClick={() => handleDelete(post.id)}>delete</button>
+              </p>
+            </div>
+          );
+        })}
+      </div>
     </div>
   );
 };
