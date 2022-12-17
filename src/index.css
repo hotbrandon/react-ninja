@@ -35,16 +35,75 @@
 }
 
 .blog-preview {
-  margin:20px;
-  padding:10px;
+  margin: 20px;
+  padding: 10px;
   border-bottom: solid 1px #eee;
 }
 
 .blog-preview:hover {
-  box-shadow: 1px 3px 5px rgba(0,0,0,0.1)
+  box-shadow: 1px 3px 5px rgba(0, 0, 0, 0.1);
 }
 
 .blog-preview h3 {
   color: #f1356d;
   margin-bottom: 8px;
+}
+
+.create-form {
+  width: 400px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.create-form label {
+  text-align: left;
+  display: block;
+}
+
+.create-form input,
+.create-form textarea,
+.create-form select {
+  width: 100%;
+  padding: 6px 10px;
+  margin: 10px 0;
+  border: solid 1px #ddd;
+  box-sizing: border-box;
+  display: block;
+}
+
+button {
+  color: #fff;
+  background-color: #f1356d;
+  padding: 8px;
+  border: 0;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.post {
+  margin: 20px;
+  padding: 10px;
+  border-bottom: solid 1px #eee;
+}
+
+.post a,
+.post h4 {
+  color: #f1356d;
+  margin-bottom: 8px;
+}
+
+.post a {
+  text-decoration: none;
+}
+
+.post .author {
+  margin-top: 10px;
+}
+
+.post .content {
+  margin: 10px;
+}
+
+.post .delete {
+  text-align: right;
 }

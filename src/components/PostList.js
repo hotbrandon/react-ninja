@@ -1,4 +1,5 @@
 import useFetch from "./useFetch";
+import { Link } from "react-router-dom";
 
 const PostList = () => {
   const {
@@ -15,10 +16,12 @@ const PostList = () => {
         {isLoading && "loading posts..."}
         {posts.map((post) => {
           return (
-            <div key={post.id}>
-              <p>{post.id}</p>
-              <p>{post.title}</p>
+            <div className="post" key={post.id}>
+              <h4>
+                {post.id} <Link to={`/posts/${post.id}`}>{post.title}</Link>
+              </h4>
               <p>{post.content}</p>
+              <p className="author">- {post.author}</p>
             </div>
           );
         })}

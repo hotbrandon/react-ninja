@@ -7,7 +7,8 @@ const useFetch = (url) => {
 
   useEffect(() => {
     console.log("fetching posts!");
-    fetch(url)
+    const abrtCtrl = new AbortController();
+    fetch(url, { signal: abrtCtrl.signal })
       .then((res) => {
         if (!res.ok) {
           throw Error("failed to fetch posts!");
@@ -20,10 +21,15 @@ const useFetch = (url) => {
         setError(null);
       })
       .catch((err) => {
-        console.log(err);
-        setError(err.message);
-        setIsLoading(false);
+        if (err.name === "abortError") {
+          console.log("abort");
+        } else {
+          console.log(err);
+          setError(err.message);
+          setIsLoading(false);
+        }
       });
+    return () => abrtCtrl.abort();
   }, [url]);
   return { data, isLoading, error };
 };
