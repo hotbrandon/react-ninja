@@ -1,3 +1,8 @@
+# This is my learning project for React
+
+ref: Full Modern React Tutorial
+https://www.youtube.com/playlist?list=PL4cUxeGkcC9gZD-Tvwfod2gaISzfRiP9d
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
